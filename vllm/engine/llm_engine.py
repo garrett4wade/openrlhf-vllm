@@ -180,7 +180,7 @@ class LLMEngine:
         if self.parallel_config.tensor_parallel_size == 1:
             num_gpus = self.cache_config.gpu_memory_utilization
         else:
-            num_gpus = 1
+            num_gpus = 0.9
 
         self.driver_dummy_worker: RayWorkerVllm = None
         self.workers: List[RayWorkerVllm] = []

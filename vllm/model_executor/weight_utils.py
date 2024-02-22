@@ -200,7 +200,15 @@ def prepare_hf_model_weights(
     return hf_folder, hf_weights_files, use_safetensors
 
 
-def hf_model_weights_iterator(
+def hf_model_weights_iterator(model_name_or_path, *args, **kwargs):
+    if isinstance(model_name_or_path, dict):
+        for name, param in model_name_or_path.items():
+            yield name, param
+    else:
+        yield from _hf_model_weights_iterator(model_name_or_path, *args, **kwargs)
+
+
+def _hf_model_weights_iterator(
     model_name_or_path: str,
     cache_dir: Optional[str] = None,
     load_format: str = "auto",
