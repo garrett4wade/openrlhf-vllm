@@ -68,7 +68,7 @@ class RayGPUExecutor(DistributedGPUExecutor):
             num_gpus = self.cache_config.gpu_memory_utilization
         else:
             # Otherwise, the ray workers are allocated with a full GPU.
-            num_gpus = 1
+            num_gpus = 0.9
 
         # The driver dummy worker does not actually use any resources.
         # It holds the resource for the driver worker.
